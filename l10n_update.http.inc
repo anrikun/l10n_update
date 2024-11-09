@@ -309,7 +309,7 @@ function l10n_update_http_request($url, array $options = array()) {
   $result->headers = array();
 
   // Parse the response headers.
-  while ($line = trim(array_shift($response) ?? '')) {
+  while ($line = trim(!empty(array_shift($response)) ? array_shift($response) : '')) {
     list($name, $value) = explode(':', $line, 2);
     $name = strtolower($name);
     if (isset($result->headers[$name]) && $name == 'set-cookie') {
