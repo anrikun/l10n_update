@@ -312,7 +312,7 @@ function l10n_update_build_server_pattern($project, $template) {
     '%core' => $project->core,
     '%language' => isset($project->langcode) ? $project->langcode : '%language',
   );
-  return strtr($template ?? '', $variables);
+  return strtr($template ? $template : '', $variables);
 }
 
 /**
