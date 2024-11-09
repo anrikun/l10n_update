@@ -234,7 +234,7 @@ function l10n_update_http_request($url, array $options = array()) {
   // or PUT request. Some non-standard servers get confused by Content-Length in
   // at least HEAD/GET requests, and Squid always requires Content-Length in
   // POST/PUT requests.
-  $content_length = strlen($options['data'] ?? '');
+  $content_length = strlen(isset($options['data']) ? $options['data'] : '');
   if ($content_length > 0 || $options['method'] == 'POST' || $options['method'] == 'PUT') {
     $options['headers']['Content-Length'] = $content_length;
   }
